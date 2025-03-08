@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/md_theme_onSurface_mediumContrast">
+
+        <ImageView
+            android:id="@+id/wick"
+            android:layout_width="225dp"
+            android:layout_height="356dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="108dp"
+            android:contentDescription="TODO"
+            app:layout_constraintEnd_toStartOf="@+id/clonedone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/wick" />
+
+        <ImageView
+            android:id="@+id/futurama"
+            android:layout_width="246dp"
+            android:layout_height="316dp"
+            android:layout_marginTop="-12dp"
+            android:contentDescription="TODO"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.109"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/futurama" />
+
+        <ImageView
+            android:id="@+id/ladybug"
+            android:layout_width="259dp"
+            android:layout_height="137dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="-27dp"
+            android:layout_marginBottom="208dp"
+            android:contentDescription="TODO"
+            app:layout_constraintStart_toEndOf="@+id/wick"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ladybug" />
+
+        <ImageView
+            android:id="@+id/barbie"
+            android:layout_width="139dp"
+            android:layout_height="224dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="28dp"
+            android:contentDescription="TODO"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/futurama"
+            app:srcCompat="@drawable/barbie" />
+
+        <ImageView
+            android:id="@+id/openheimer"
+            android:layout_width="199dp"
+            android:layout_height="367dp"
+            android:layout_marginStart="112dp"
+            android:layout_marginTop="48dp"
+            android:contentDescription="TODO"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ladybug"
+            app:srcCompat="@drawable/openheimer" />
+
+        <ImageView
+            android:id="@+id/clonedone"
+            android:layout_width="143dp"
+            android:layout_height="420dp"
+            android:layout_marginTop="36dp"
+            android:contentDescription="TODO"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.985"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/clonedone" />
+
+        <ImageView
+            android:id="@+id/marmaid"
+            android:layout_width="211dp"
+            android:layout_height="242dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="-47dp"
+            android:contentDescription="TODO"
+            app:layout_constraintEnd_toEndOf="@+id/openheimer"
+            app:layout_constraintTop_toBottomOf="@+id/futurama"
+            app:srcCompat="@drawable/mermaid" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="157dp"
+                android:layout_height="68dp"
+                android:layout_marginTop="372dp"
+                android:contentDescription="TODO"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/hululogo" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="341dp"
+                android:layout_height="51dp"
+                android:layout_margin="16dp"
+                android:gravity="center"
+                android:text="@string/colored_text"
+                android:textColor="@color/md_theme_onBackground_mediumContrast"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="32dp"
+                android:alpha="0.7"
+                android:gravity="center"
+                android:text="Watch full seasons of exclusive streaming series and episodes, \n hitmovies, Hulu Originals, kids shows, and many more"
+                android:textColor="@color/md_theme_onBackground_mediumContrast"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/materialButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="68dp"
+                android:backgroundTint="@color/md_theme_primary"
+                android:text="Get started"
+                app:cornerRadius="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="12dp"
+                android:text="Login"
+                android:textColor="@color/md_theme_onBackground_mediumContrast"
+                app:backgroundTint="@color/md_theme_onSurface_mediumContrast"
+                app:cornerRadius="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.68"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialButton"
+                app:layout_constraintVertical_bias="0.0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</FrameLayout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TestApp</string>
+    <string name="colored_text">Enjoy The <font color="#00CF71">Best</font> Movies and TV shows Out There</string>
+
+</resources>
