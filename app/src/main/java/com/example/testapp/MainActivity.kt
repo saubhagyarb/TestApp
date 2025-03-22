@@ -1,5 +1,6 @@
 package com.example.testapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
@@ -7,8 +8,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.button.MaterialButton
 
 class MainActivity : AppCompatActivity() {
+    lateinit var getStartedBtn : MaterialButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -27,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         val marmaid = findViewById<ImageView>(R.id.marmaid)
         val futurama = findViewById<ImageView>(R.id.futurama)
 
+        getStartedBtn = findViewById(R.id.getStartedBtn)
+
         wick.animation = AnimationUtils.loadAnimation(this, R.anim.shake_animation)
         ladybug.animation = AnimationUtils.loadAnimation(this, R.anim.shake_animation)
         openheimer.animation = AnimationUtils.loadAnimation(this, R.anim.shake_animation)
@@ -34,6 +39,10 @@ class MainActivity : AppCompatActivity() {
         barbie.animation = AnimationUtils.loadAnimation(this, R.anim.shake_animation)
         marmaid.animation = AnimationUtils.loadAnimation(this, R.anim.shake_animation)
         futurama.animation = AnimationUtils.loadAnimation(this, R.anim.shake_animation)
+
+        getStartedBtn.setOnClickListener {
+            startActivity(Intent(this, HomeScreen::class.java))
+        }
 
     }
 }
