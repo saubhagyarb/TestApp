@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"
+    android:padding="12dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        app:cardCornerRadius="10dp"
+        android:backgroundTint="@color/md_theme_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/imagesRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:descendantFocusability="blocksDescendants"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/gallery_item" />
+
+            <TextView
+                android:id="@+id/movieTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:maxLines="2"
+                android:textColor="@color/md_theme_inverseSurface"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imagesRecyclerView"
+                tools:text="Black Panther: Wakanda Forever" />
+
+            <ImageView
+                android:id="@+id/ratingBar"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/star"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/movieTitle" />
+
+            <TextView
+                android:id="@+id/ratingText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/md_theme_inverseSurface"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/ratingBar"
+                app:layout_constraintStart_toEndOf="@id/ratingBar"
+                app:layout_constraintTop_toTopOf="@id/ratingBar"
+                tools:text="8.9" />
+
+            <TextView
+                android:id="@+id/categoryText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/md_theme_inverseSurface"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/ratingBar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ratingText"
+                app:layout_constraintTop_toTopOf="@id/ratingBar"
+                tools:text="Action Movie" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
