@@ -3,15 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="250dp"
-    android:layout_height="wrap_content"
-    android:padding="12dp">
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="8dp"
-        app:cardCornerRadius="10dp"
         android:backgroundTint="@color/md_theme_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,21 +20,38 @@
             android:layout_height="wrap_content"
             android:padding="8dp">
 
+            <!-- RecyclerView for Images -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/imagesRecyclerView"
-                android:layout_width="0dp"
-                android:layout_height="140dp"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
                 android:descendantFocusability="blocksDescendants"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:listitem="@layout/gallery_item" />
 
+
+            <ImageButton
+                android:id="@+id/favoriteButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/favorite_button"
+                android:elevation="4dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/favorite"
+                app:layout_constraintEnd_toEndOf="@id/imagesRecyclerView"
+                app:layout_constraintTop_toTopOf="@id/imagesRecyclerView" />
+
+
             <TextView
                 android:id="@+id/movieTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginStart="4dp"
                 android:maxLines="2"
                 android:textColor="@color/md_theme_inverseSurface"
                 android:textSize="18sp"
@@ -52,6 +66,7 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginStart="4dp"
                 android:src="@drawable/star"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/movieTitle" />
