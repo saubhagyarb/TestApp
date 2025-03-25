@@ -26,5 +26,7 @@
     <string name="about">About</string>
     <string name="favovite_btn">favovite_btn</string>
     <string name="favorite_button">Favorite button</string>
+    <string name="favorites_will_be_appear_here">Favorites will be appear here</string>
+    <string name="empty_state_icon">empty_state_icon</string>
 
 </resources>

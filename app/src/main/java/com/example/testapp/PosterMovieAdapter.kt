@@ -34,6 +34,5 @@ class PosterMovieAdapter(
         val image: ImageView = itemView.findViewById(R.id.item_image)
         val title: TextView = itemView.findViewById(R.id.item_title)
         val subtitle: TextView = itemView.findViewById(R.id.item_subtitle)
-        val playButton: Button = itemView.findViewById(R.id.item_play_button)
     }
 }

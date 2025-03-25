@@ -34,9 +34,11 @@
 
             <ImageButton
                 android:id="@+id/favoriteButton"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_margin="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/favorite_button"
                 android:elevation="4dp"
@@ -44,7 +46,6 @@
                 android:src="@drawable/favorite"
                 app:layout_constraintEnd_toEndOf="@id/imagesRecyclerView"
                 app:layout_constraintTop_toTopOf="@id/imagesRecyclerView" />
-
 
             <TextView
                 android:id="@+id/movieTitle"
