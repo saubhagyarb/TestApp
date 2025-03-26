@@ -6,8 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
-import com.example.testapp.data.FavMovieDatabase
-import com.example.testapp.data.FavMovieRepository
+import com.example.testapp.data.FavMovieViewModel
 import com.example.testapp.ui.AboutFragment
 import com.example.testapp.ui.FavoriteFragment
 import com.example.testapp.ui.HomeFragment
@@ -40,11 +39,11 @@ class HomeScreen : AppCompatActivity() {
             true
         }
 
-        val favMovieRepository = FavMovieRepository(FavMovieDatabase.getInstance(this@HomeScreen).favMovieDao())
-        favMovieRepository.allFavMovies.observe(this@HomeScreen) { favMovies ->
+        val favMovieViewModel = FavMovieViewModel(application)
+        favMovieViewModel.allFavMovies.observe(this@HomeScreen) { favMovies ->
             bottomNavigationView.getOrCreateBadge(R.id.mFavorite).apply {
                 number = favMovies.size
-                isVisible = true
+                isVisible = number > 0
             }
         }
 

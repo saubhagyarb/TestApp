@@ -15,8 +15,7 @@ import com.example.testapp.Movies
 import com.example.testapp.PosterAdapter
 import com.example.testapp.PosterMovieAdapter
 import com.example.testapp.R
-import com.example.testapp.data.FavMovieDatabase
-import com.example.testapp.data.FavMovieRepository
+import com.example.testapp.data.FavMovieViewModel
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -61,14 +60,11 @@ class HomeFragment : Fragment() {
                 val jsonResponse =
                     URL("https://gist.githubusercontent.com/saniyusuf/406b843afdfb9c6a86e25753fe2761f4/raw/523c324c7fcc36efab8224f9ebb7556c09b69a14/Film.JSON").readText()
                 val moviesList = Gson().fromJson(jsonResponse, Array<Movies>::class.java).toList()
-                val database = FavMovieDatabase.getInstance(requireContext())
-                val dao = database.favMovieDao()
-                val favMovieRepository = FavMovieRepository(dao)
-                Log.d("Load", "fetchMovies: $moviesList")
+                val fabMoviesViewModel = FavMovieViewModel(requireActivity().application)
                 withContext(Dispatchers.Main) {
                     posterRecyclerView.adapter = PosterMovieAdapter(requireContext(), moviesList)
-                    trendingRecyclerView.adapter = MovieAdapter(moviesList, favMovieRepository)
-                    continueRecyclerView.adapter = MovieAdapter(moviesList, favMovieRepository)
+                    trendingRecyclerView.adapter = MovieAdapter(moviesList, fabMoviesViewModel, viewLifecycleOwner)
+                    continueRecyclerView.adapter = MovieAdapter(moviesList, fabMoviesViewModel, viewLifecycleOwner)
                     latestRecyclerView.adapter = PosterAdapter(movies = moviesList)
                 }
             }.getOrElse {

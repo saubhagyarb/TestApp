@@ -7,18 +7,17 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testapp.data.FavMovie
-import com.example.testapp.data.FavMovieRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.example.testapp.data.FavMovieViewModel
 
 class MovieAdapter(
     private val movies: List<Movies>,
-    private val favMovieRepository: FavMovieRepository
+    private val favMovieViewModel: FavMovieViewModel,
+    private val lifecycleOwner: LifecycleOwner
 ) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -27,6 +26,11 @@ class MovieAdapter(
         val category: TextView = view.findViewById(R.id.categoryText)
         val imagesRecyclerView: RecyclerView = view.findViewById(R.id.imagesRecyclerView)
         val favoriteButton: ImageButton = view.findViewById(R.id.favoriteButton)
+
+        val lm = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
+        var ga = GalleryAdapter()
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
@@ -37,67 +41,51 @@ class MovieAdapter(
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val movie = movies[position]
 
+        //todo
+        //don't create unwanted instances
+
         holder.title.text = movie.Title
         holder.ratingText.text = movie.imdbRating
         holder.category.text = movie.Genre
-        holder.imagesRecyclerView.layoutManager = LinearLayoutManager(holder.itemView.context, LinearLayoutManager.HORIZONTAL, false)
-        val galleryAdapter = GalleryAdapter(movie.Images)
-        holder.imagesRecyclerView.adapter = galleryAdapter
+        holder.imagesRecyclerView.layoutManager = holder.lm
 
-        var isFavorite = false
-        CoroutineScope(Dispatchers.IO).launch {
-            val existingFavorite = favMovieRepository.getFavMovieByTitle(movie.Title.toString())
-            withContext(Dispatchers.Main) {
-                isFavorite = existingFavorite != null
-                updateFavoriteButton(holder.favoriteButton, isFavorite)
-            }
-        }
+        holder.ga.imagesInit(movie.Images)
+        holder.imagesRecyclerView.adapter = holder.ga
 
-        holder.favoriteButton.setOnClickListener {
-            CoroutineScope(Dispatchers.IO).launch {
+
+        //todo
+        // observer use only activity and fragments
+
+        //1 -
+        //2
+        //3
+        //4
+        favMovieViewModel.getFavMovieByTitle(movie.Title.toString()).observe(lifecycleOwner, Observer { favMovie ->
+
+            val isFavorite = favMovie != null
+
+            updateFavoriteButton(holder.favoriteButton, isFavorite)
+
+            holder.favoriteButton.setOnClickListener {
                 if (isFavorite) {
-                    favMovieRepository.deleteFavMovie(movie.Title.toString())
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(
-                            holder.itemView.context,
-                            "${movie.Title} removed from favorites",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        isFavorite = false
-                        updateFavoriteButton(holder.favoriteButton, false)
-                    }
+                    favMovieViewModel.deleteFavMovie(movie.Title.toString())
+                    Toast.makeText(holder.itemView.context, "${movie.Title} removed from favorites", Toast.LENGTH_SHORT).show()
                 } else {
-                    val favMovie = FavMovie(
-                        title = movie.Title,
-                        poster = movie.Poster,
-                        runtime = movie.Runtime
-                    )
-                    favMovieRepository.insertFavMovie(favMovie)
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(
-                            holder.itemView.context,
-                            "${movie.Title} added to favorites",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        isFavorite = true
-                        updateFavoriteButton(holder.favoriteButton, true)
-                    }
+                    val newFavMovie = FavMovie(title = movie.Title, poster = movie.Poster, runtime = movie.Runtime)
+                    favMovieViewModel.insertFavMovie(newFavMovie)
+                    Toast.makeText(holder.itemView.context, "${movie.Title} added to favorites", Toast.LENGTH_SHORT).show()
                 }
             }
-        }
+        })
     }
 
     private fun updateFavoriteButton(favoriteButton: ImageButton, isFavorite: Boolean) {
         val context = favoriteButton.context
-        if (isFavorite) {
-            favoriteButton.setImageDrawable(
-                ContextCompat.getDrawable(context, R.drawable.favorite_filled)
+        favoriteButton.setImageDrawable(
+            ContextCompat.getDrawable(
+                context, if (isFavorite) R.drawable.favorite_filled else R.drawable.favorite
             )
-        } else {
-            favoriteButton.setImageDrawable(
-                ContextCompat.getDrawable(context, R.drawable.favorite)
-            )
-        }
+        )
     }
 
     override fun getItemCount(): Int = movies.size

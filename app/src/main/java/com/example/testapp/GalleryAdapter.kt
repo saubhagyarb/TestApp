@@ -7,7 +7,14 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import coil3.load
 
-class GalleryAdapter(private val images: ArrayList<String>) : RecyclerView.Adapter<GalleryAdapter.GalleryViewHolder>() {
+class GalleryAdapter : RecyclerView.Adapter<GalleryAdapter.GalleryViewHolder>() {
+
+    private var images: ArrayList<String>? = null
+
+
+    fun imagesInit(data :  ArrayList<String>) {
+        images = data
+    }
 
     class GalleryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageView: ImageView = view.findViewById(R.id.galleryImage)
@@ -19,8 +26,8 @@ class GalleryAdapter(private val images: ArrayList<String>) : RecyclerView.Adapt
     }
 
     override fun onBindViewHolder(holder: GalleryViewHolder, position: Int) {
-        holder.imageView.load(images[position])
+        holder.imageView.load(images?.get(position))
     }
 
-    override fun getItemCount(): Int = images.size
+    override fun getItemCount(): Int = images?.size ?: 0
 }

@@ -7,27 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testapp.FavAdapter
-import com.example.testapp.PosterAdapter
 import com.example.testapp.R
-import com.example.testapp.data.FavMovieDatabase
-import com.example.testapp.data.FavMovieRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.example.testapp.data.FavMovieViewModel
 
 class FavoriteFragment : Fragment() {
     private lateinit var favRecyclerView: RecyclerView
-    private lateinit var favMovieRepository: FavMovieRepository
     private lateinit var emptyStateLayout: TextView
+    lateinit var fabMovieViewModel: FavMovieViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_favorite, container, false)
         val context = requireContext()
 
@@ -36,10 +27,7 @@ class FavoriteFragment : Fragment() {
 
         favRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
-        val database = FavMovieDatabase.getInstance(context)
-        val dao = database.favMovieDao()
-        favMovieRepository = FavMovieRepository(dao)
-
+        fabMovieViewModel = FavMovieViewModel(requireActivity().application)
 
         fetchFavoriteMovies()
 
@@ -47,7 +35,7 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun fetchFavoriteMovies() {
-        val fabMovies = favMovieRepository.allFavMovies
+        val fabMovies = fabMovieViewModel.allFavMovies
 
         fabMovies.observe(viewLifecycleOwner) { favMoviesList ->
             Log.d("FavoriteFragment", "Favorite movies: $favMoviesList")
@@ -60,7 +48,7 @@ class FavoriteFragment : Fragment() {
                 favRecyclerView.visibility = View.VISIBLE
             }
 
-            favRecyclerView.adapter = FavAdapter(fabMovies, viewLifecycleOwner)
+            favRecyclerView.adapter = FavAdapter(fabMovies, viewLifecycleOwner, fabMovieViewModel)
         }
     }
 

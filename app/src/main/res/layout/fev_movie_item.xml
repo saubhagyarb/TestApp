@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:padding="12dp">
 
+        <!-- Movie Poster -->
         <ImageView
             android:id="@+id/imgPoster"
             android:layout_width="100dp"
@@ -24,6 +25,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Movie Title -->
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="0dp"
@@ -36,6 +38,7 @@
             app:layout_constraintStart_toEndOf="@id/imgPoster"
             app:layout_constraintTop_toTopOf="@id/imgPoster" />
 
+        <!-- Movie Runtime -->
         <TextView
             android:id="@+id/time"
             android:layout_width="0dp"
@@ -46,7 +49,17 @@
             app:layout_constraintStart_toStartOf="@id/tvTitle"
             app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
-
+        <!-- Delete Button -->
+        <ImageButton
+            android:id="@+id/btnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="4dp"
+            android:src="@drawable/delete"
+            android:contentDescription="Delete Movie"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

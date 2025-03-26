@@ -3,7 +3,6 @@ package com.example.testapp
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -16,15 +15,11 @@ class PosterAdapter(private val movies: List<Movies>) :
         private val moviePoster: ImageView = itemView.findViewById(R.id.moviePoster)
         private val movieTitle: TextView = itemView.findViewById(R.id.movieTitle)
         private val movieDuration: TextView = itemView.findViewById(R.id.movieDuration)
-        private val addWatchlistButton: Button = itemView.findViewById(R.id.addWatchlistButton)
 
         fun bind(movie: Movies) {
             movieTitle.text = movie.Title
             movieDuration.text = movie.Runtime
             moviePoster.load(movie.Poster.toString().replace("http://","https://"))
-
-//            addWatchlistButton.setOnClickListener {
-//            }
         }
     }
 
