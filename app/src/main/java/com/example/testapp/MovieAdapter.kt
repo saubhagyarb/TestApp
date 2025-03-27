@@ -8,7 +8,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testapp.data.FavMovie
@@ -17,8 +16,20 @@ import com.example.testapp.data.FavMovieViewModel
 class MovieAdapter(
     private val movies: List<Movies>,
     private val favMovieViewModel: FavMovieViewModel,
-    private val lifecycleOwner: LifecycleOwner
+    lifecycleOwner: LifecycleOwner
 ) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+
+    private val favoriteMovies = mutableSetOf<String>()
+
+    init {
+        favMovieViewModel.allFavMovies.observe(lifecycleOwner) { favMovies ->
+            favoriteMovies.clear()
+            favoriteMovies.addAll(favMovies.mapNotNull { it.title }.toSet())
+            notifyDataSetChanged()
+        }
+    }
+
+
 
     class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView = view.findViewById(R.id.movieTitle)
@@ -26,11 +37,8 @@ class MovieAdapter(
         val category: TextView = view.findViewById(R.id.categoryText)
         val imagesRecyclerView: RecyclerView = view.findViewById(R.id.imagesRecyclerView)
         val favoriteButton: ImageButton = view.findViewById(R.id.favoriteButton)
-
         val lm = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
         var ga = GalleryAdapter()
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
@@ -41,42 +49,29 @@ class MovieAdapter(
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val movie = movies[position]
 
-        //todo
-        //don't create unwanted instances
-
         holder.title.text = movie.Title
         holder.ratingText.text = movie.imdbRating
         holder.category.text = movie.Genre
         holder.imagesRecyclerView.layoutManager = holder.lm
-
         holder.ga.imagesInit(movie.Images)
         holder.imagesRecyclerView.adapter = holder.ga
 
+        val isFavorite = favoriteMovies.contains(movie.Title)
+        updateFavoriteButton(holder.favoriteButton, isFavorite)
 
-        //todo
-        // observer use only activity and fragments
-
-        //1 -
-        //2
-        //3
-        //4
-        favMovieViewModel.getFavMovieByTitle(movie.Title.toString()).observe(lifecycleOwner, Observer { favMovie ->
-
-            val isFavorite = favMovie != null
-
-            updateFavoriteButton(holder.favoriteButton, isFavorite)
-
-            holder.favoriteButton.setOnClickListener {
-                if (isFavorite) {
-                    favMovieViewModel.deleteFavMovie(movie.Title.toString())
-                    Toast.makeText(holder.itemView.context, "${movie.Title} removed from favorites", Toast.LENGTH_SHORT).show()
-                } else {
-                    val newFavMovie = FavMovie(title = movie.Title, poster = movie.Poster, runtime = movie.Runtime)
-                    favMovieViewModel.insertFavMovie(newFavMovie)
-                    Toast.makeText(holder.itemView.context, "${movie.Title} added to favorites", Toast.LENGTH_SHORT).show()
-                }
+        holder.favoriteButton.setOnClickListener {
+            if (isFavorite) {
+                favMovieViewModel.deleteFavMovie(movie.Title.toString())
+                favoriteMovies.remove(movie.Title)
+                Toast.makeText(holder.itemView.context, "${movie.Title} removed from favorites", Toast.LENGTH_SHORT).show()
+            } else {
+                val newFavMovie = FavMovie(title = movie.Title, poster = movie.Poster, runtime = movie.Runtime)
+                favMovieViewModel.insertFavMovie(newFavMovie)
+                favoriteMovies.add(movie.Title.toString())
+                Toast.makeText(holder.itemView.context, "${movie.Title} added to favorites", Toast.LENGTH_SHORT).show()
             }
-        })
+            notifyItemChanged(position)
+        }
     }
 
     private fun updateFavoriteButton(favoriteButton: ImageButton, isFavorite: Boolean) {
