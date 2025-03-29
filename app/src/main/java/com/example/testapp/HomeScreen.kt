@@ -15,6 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class HomeScreen : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -32,14 +33,36 @@ class HomeScreen : AppCompatActivity() {
 
 
         setFragment(homeFragment)
-        bottomNavigationView.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.mHome -> setFragment(homeFragment)
-                R.id.mFavorite -> setFragment(favoriteFragment)
-                R.id.mAbout -> setFragment(aboutFragment)
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.mHome -> {
+                    setFragment(homeFragment)
+                    item.setIcon(R.drawable.home_filled)
+                }
+                R.id.mFavorite -> {
+                    setFragment(favoriteFragment)
+                    item.setIcon(R.drawable.favorite_filled)
+                }
+                R.id.mAbout -> {
+                    setFragment(aboutFragment)
+                    item.setIcon(R.drawable.about_filled)
+                }
             }
+
+            // Reset other icons when a new one is selected
+            bottomNavigationView.menu.findItem(R.id.mHome).apply {
+                if (item.itemId != R.id.mHome) setIcon(R.drawable.home)
+            }
+            bottomNavigationView.menu.findItem(R.id.mFavorite).apply {
+                if (item.itemId != R.id.mFavorite) setIcon(R.drawable.favorite)
+            }
+            bottomNavigationView.menu.findItem(R.id.mAbout).apply {
+                if (item.itemId != R.id.mAbout) setIcon(R.drawable.about)
+            }
+
             true
         }
+
 
         val favMovieViewModel = FavMovieViewModel(application)
         favMovieViewModel.allFavMovies.observe(this@HomeScreen) { favMovies ->
@@ -48,7 +71,6 @@ class HomeScreen : AppCompatActivity() {
                 isVisible = number > 0
             }
         }
-
     }
 
     private fun setFragment(fragment: Fragment) {
