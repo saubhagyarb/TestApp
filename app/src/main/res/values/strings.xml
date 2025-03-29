@@ -26,4 +26,5 @@
     <string name="features_text">• Movie Discovery: Browse trending and latest movies with detailed information\n\n• Favorites System: Save your favorite movies for quick access with one tap\n\n• Detailed Information: View ratings, genres, runtimes, and other essential details\n\n• Image Galleries: Explore multiple images for each movie\n\n• Beautiful UI: Enjoy a clean, modern interface with intuitive navigation\n\n• Badge Notifications: Keep track of your favorites count with our dynamic badge system</string>
 
     <string name="credits_text">Developed using:\n• Kotlin\n• Android Architecture Components\n• Room Database for local storage\n• Coil3 for image loading\n• Material Design components\n• Gson for JSON parsing\n• Coroutines for asynchronous operations\n\nMovie data sourced from public API collections.</string>
+    <string name="rating_star">Rating star</string>
 </resources>
