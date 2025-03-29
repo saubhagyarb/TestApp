@@ -17,9 +17,9 @@ class PosterAdapter(private val movies: List<Movies>) :
         private val movieDuration: TextView = itemView.findViewById(R.id.movieDuration)
 
         fun bind(movie: Movies) {
-            movieTitle.text = movie.Title
-            movieDuration.text = movie.Runtime
-            moviePoster.load(movie.Poster.toString().replace("http://","https://"))
+            movieTitle.text = movie.movieTitle
+            movieDuration.text = movie.movieRuntime
+            moviePoster.load(movie.moviePoster.toString().replace("http://","https://"))
         }
     }
 

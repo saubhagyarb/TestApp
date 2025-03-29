@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -23,9 +22,9 @@ class PosterMovieAdapter(
 
     override fun onBindViewHolder(holder: PosterViewHolder, position: Int) {
         val item = itemList[position]
-        holder.title.text = item.Title
-        holder.subtitle.text = String.format("NEW • ${item.Genre} • ${item.Year} • ${item.Type}")
-        holder.image.load(item.Poster.toString().replace("http://","https://"))
+        holder.title.text = item.movieTitle
+        holder.subtitle.text = String.format("NEW • ${item.movieGenre} • ${item.movieYear} • ${item.movieType}")
+        holder.image.load(item.moviePoster.toString().replace("http://","https://"))
     }
 
     override fun getItemCount(): Int = itemList.size

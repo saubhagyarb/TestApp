@@ -1,5 +1,6 @@
 package com.example.testapp
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.testapp.data.FavMovie
 import com.example.testapp.data.FavMovieViewModel
 
+@SuppressLint("NotifyDataSetChanged")
 class MovieAdapter(
     private val movies: List<Movies>,
     private val favMovieViewModel: FavMovieViewModel,
@@ -51,28 +53,28 @@ class MovieAdapter(
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val movie = movies[position]
 
-        holder.title.text = movie.Title
-        holder.ratingText.text = movie.imdbRating
-        holder.category.text = movie.Genre
+        holder.title.text = movie.movieTitle
+        holder.ratingText.text = movie.movieimdbRating
+        holder.category.text = movie.movieGenre
         holder.imagesRecyclerView.layoutManager = holder.layoutManager
-        holder.galleryAdapter.imagesInit(movie.Images)
+        holder.galleryAdapter.imagesInit(movie.movieImages)
         holder.imagesRecyclerView.adapter = holder.galleryAdapter
 
-        val isFavorite = favoriteMovies.contains(movie.Title)
+        val isFavorite = favoriteMovies.contains(movie.movieTitle)
         updateFavoriteButton(holder.favoriteButton, isFavorite)
 
         holder.favoriteButton.setOnClickListener {
             if (isFavorite) {
-                favMovieViewModel.deleteFavMovie(movie.Title.toString())
-                favoriteMovies.remove(movie.Title)
+                favMovieViewModel.deleteFavMovie(movie.movieTitle.toString())
+                favoriteMovies.remove(movie.movieTitle)
                 dataPass.passData(favoriteMovies.size)
 //                Toast.makeText(holder.itemView.context, "${movie.Title} removed from favorites", Toast.LENGTH_SHORT).show()
 
 //                ref.task1OnFRg(favoriteMovies.size)
 
             } else {
-                favMovieViewModel.insertFavMovie(FavMovie(title = movie.Title, poster = movie.Poster, runtime = movie.Runtime))
-                favoriteMovies.add(movie.Title.toString())
+                favMovieViewModel.insertFavMovie(FavMovie(title = movie.movieTitle, poster = movie.moviePoster, runtime = movie.movieRuntime))
+                favoriteMovies.add(movie.movieTitle.toString())
                 dataPass.passData(favoriteMovies.size)
 //                Toast.makeText(holder.itemView.context, "${movie.Title} added to favorites", Toast.LENGTH_SHORT).show()
 
