@@ -13,8 +13,4 @@ class FavMovieRepository(private val favMovieDao: FavMovieDao) {
     fun deleteFavMovie(title: String) {
         favMovieDao.deleteFavMovie(title)
     }
-
-    fun getFavMovieByTitle(title: String): LiveData<FavMovie?> {
-        return favMovieDao.getFavMovieByTitle(title)
-    }
 }

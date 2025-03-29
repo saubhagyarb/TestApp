@@ -15,7 +15,4 @@ interface FavMovieDao {
 
     @Query("DELETE FROM favorite_movies WHERE title = :title")
     fun deleteFavMovie(title: String)
-
-    @Query("SELECT * FROM favorite_movies WHERE title = :title")
-    fun getFavMovieByTitle(title: String): LiveData<FavMovie?>
 }

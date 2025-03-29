@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.testapp.DataPass
 import com.example.testapp.MovieAdapter
 import com.example.testapp.Movies
 import com.example.testapp.PosterAdapter
@@ -22,13 +24,19 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.net.URL
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(){
     private lateinit var posterRecyclerView: RecyclerView
     private lateinit var trendingRecyclerView: RecyclerView
     private lateinit var continueRecyclerView: RecyclerView
     private lateinit var latestRecyclerView: RecyclerView
     private lateinit var trendingArrowBtn: ImageButton
     private lateinit var latestArrowBtn: ImageButton
+
+    val dataPass = object : DataPass {
+        override fun passData(favoritesCount: Int) {
+            Toast.makeText(context, "Favorites Count: $favoritesCount", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,10 +69,10 @@ class HomeFragment : Fragment() {
                     URL("https://gist.githubusercontent.com/saniyusuf/406b843afdfb9c6a86e25753fe2761f4/raw/523c324c7fcc36efab8224f9ebb7556c09b69a14/Film.JSON").readText()
                 val moviesList = Gson().fromJson(jsonResponse, Array<Movies>::class.java).toList()
                 val fabMoviesViewModel = FavMovieViewModel(requireActivity().application)
-                withContext(Dispatchers.Main) {
+                 withContext(Dispatchers.Main) {
                     posterRecyclerView.adapter = PosterMovieAdapter(requireContext(), moviesList)
-                    trendingRecyclerView.adapter = MovieAdapter(moviesList, fabMoviesViewModel, viewLifecycleOwner)
-                    continueRecyclerView.adapter = MovieAdapter(moviesList, fabMoviesViewModel, viewLifecycleOwner)
+                    trendingRecyclerView.adapter = MovieAdapter(moviesList, fabMoviesViewModel, viewLifecycleOwner, dataPass)
+                    continueRecyclerView.adapter = MovieAdapter(moviesList, fabMoviesViewModel, viewLifecycleOwner, dataPass)
                     latestRecyclerView.adapter = PosterAdapter(movies = moviesList)
                 }
             }.getOrElse {

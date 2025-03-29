@@ -24,10 +24,12 @@ class HomeScreen : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         val homeFragment = HomeFragment()
         val favoriteFragment = FavoriteFragment()
         val aboutFragment = AboutFragment()
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
+
 
         setFragment(homeFragment)
         bottomNavigationView.setOnItemSelectedListener {

@@ -19,8 +19,4 @@ class FavMovieViewModel(application: Application) : AndroidViewModel(application
     fun deleteFavMovie(title: String) = viewModelScope.launch(Dispatchers.IO) {
         repository.deleteFavMovie(title)
     }
-
-    fun getFavMovieByTitle(title: String) : LiveData<FavMovie?> {
-        return repository.getFavMovieByTitle(title)
-    }
 }

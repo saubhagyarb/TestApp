@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,10 +15,13 @@ import com.example.testapp.data.FavMovieViewModel
 class MovieAdapter(
     private val movies: List<Movies>,
     private val favMovieViewModel: FavMovieViewModel,
-    lifecycleOwner: LifecycleOwner
+    lifecycleOwner: LifecycleOwner,
+    val dataPass: DataPass,
+
 ) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     private val favoriteMovies = mutableSetOf<String>()
+
 
     init {
         favMovieViewModel.allFavMovies.observe(lifecycleOwner) { favMovies ->
@@ -37,8 +39,8 @@ class MovieAdapter(
         val category: TextView = view.findViewById(R.id.categoryText)
         val imagesRecyclerView: RecyclerView = view.findViewById(R.id.imagesRecyclerView)
         val favoriteButton: ImageButton = view.findViewById(R.id.favoriteButton)
-        val lm = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
-        var ga = GalleryAdapter()
+        val layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
+        var galleryAdapter = GalleryAdapter()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
@@ -52,9 +54,9 @@ class MovieAdapter(
         holder.title.text = movie.Title
         holder.ratingText.text = movie.imdbRating
         holder.category.text = movie.Genre
-        holder.imagesRecyclerView.layoutManager = holder.lm
-        holder.ga.imagesInit(movie.Images)
-        holder.imagesRecyclerView.adapter = holder.ga
+        holder.imagesRecyclerView.layoutManager = holder.layoutManager
+        holder.galleryAdapter.imagesInit(movie.Images)
+        holder.imagesRecyclerView.adapter = holder.galleryAdapter
 
         val isFavorite = favoriteMovies.contains(movie.Title)
         updateFavoriteButton(holder.favoriteButton, isFavorite)
@@ -63,12 +65,19 @@ class MovieAdapter(
             if (isFavorite) {
                 favMovieViewModel.deleteFavMovie(movie.Title.toString())
                 favoriteMovies.remove(movie.Title)
-                Toast.makeText(holder.itemView.context, "${movie.Title} removed from favorites", Toast.LENGTH_SHORT).show()
+                dataPass.passData(favoriteMovies.size)
+//                Toast.makeText(holder.itemView.context, "${movie.Title} removed from favorites", Toast.LENGTH_SHORT).show()
+
+//                ref.task1OnFRg(favoriteMovies.size)
+
             } else {
-                val newFavMovie = FavMovie(title = movie.Title, poster = movie.Poster, runtime = movie.Runtime)
-                favMovieViewModel.insertFavMovie(newFavMovie)
+                favMovieViewModel.insertFavMovie(FavMovie(title = movie.Title, poster = movie.Poster, runtime = movie.Runtime))
                 favoriteMovies.add(movie.Title.toString())
-                Toast.makeText(holder.itemView.context, "${movie.Title} added to favorites", Toast.LENGTH_SHORT).show()
+                dataPass.passData(favoriteMovies.size)
+//                Toast.makeText(holder.itemView.context, "${movie.Title} added to favorites", Toast.LENGTH_SHORT).show()
+
+
+//                ref.task1OnFRg(favoriteMovies.size)
             }
             notifyItemChanged(position)
         }

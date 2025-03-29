@@ -3,7 +3,7 @@
     <string name="app_name">Hulu</string>
     <string name="colored_text">Enjoy The <font color="#00CF71">Best</font> Movies and TV shows Out There</string>
     <string name="hulu">hulu</string>
-    <string name="Watch_full_seasons">Watch full seasons of exclusive streaming series and episodes, \n hitmovies, Hulu Originals, kids shows, and many more</string>
+    <string name="Watch_full_seasons">Watch full seasons of exclusive streaming series and episodes, including the latest hit movies, Hulu Originals, kids shows, and many more</string>
     <string name="get_started">Get started</string>
     <string name="login">Login</string>
     <string name="front_poster">Front Poster</string>
@@ -21,5 +21,9 @@
     <string name="favorites_will_be_appear_here">Favorites will be appear here</string>
     <string name="empty_state_icon">empty_state_icon</string>
     <string name="background_image">Background image</string>
+    <string name="about_text">Hulu is your personal cinema companion, designed to help you discover, track, and organize your favorite films. Our app provides a seamless experience for browsing trending movies, keeping track of what you\'re watching, and saving your favorites for easy access.\n\nBuilt with modern Android development practices, MovieHub offers a clean and intuitive interface that puts the focus on what matters most - the movies you love.</string>
 
+    <string name="features_text">• Movie Discovery: Browse trending and latest movies with detailed information\n\n• Favorites System: Save your favorite movies for quick access with one tap\n\n• Detailed Information: View ratings, genres, runtimes, and other essential details\n\n• Image Galleries: Explore multiple images for each movie\n\n• Beautiful UI: Enjoy a clean, modern interface with intuitive navigation\n\n• Badge Notifications: Keep track of your favorites count with our dynamic badge system</string>
+
+    <string name="credits_text">Developed using:\n• Kotlin\n• Android Architecture Components\n• Room Database for local storage\n• Coil3 for image loading\n• Material Design components\n• Gson for JSON parsing\n• Coroutines for asynchronous operations\n\nMovie data sourced from public API collections.</string>
 </resources>
