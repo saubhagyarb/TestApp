@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@color/md_theme_inverseOnSurface"
         android:id="@+id/main"
-        tools:context=".MainActivity">
+        tools:context=".ui.MainActivity">
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animationImage"

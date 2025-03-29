@@ -1,4 +1,4 @@
-package com.example.testapp
+package com.example.testapp.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil3.load
+import com.example.testapp.data.Movies
+import com.example.testapp.R
 
 class PosterAdapter(private val movies: List<Movies>) :
     RecyclerView.Adapter<PosterAdapter.MovieViewHolder>() {

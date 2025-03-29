@@ -1,4 +1,4 @@
-package com.example.testapp
+package com.example.testapp.ui
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -6,10 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import com.example.testapp.R
 import com.example.testapp.data.FavMovieViewModel
-import com.example.testapp.ui.AboutFragment
-import com.example.testapp.ui.FavoriteFragment
-import com.example.testapp.ui.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeScreen : AppCompatActivity() {

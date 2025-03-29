@@ -20,7 +20,7 @@
             android:id="@+id/main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".HomeScreen">
+            tools:context=".ui.HomeScreen">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/posterRecyclerView"

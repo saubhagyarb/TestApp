@@ -1,4 +1,4 @@
-package com.example.testapp
+package com.example.testapp.data
 
 interface DataPass {
     fun passData(favoritesCount : Int)

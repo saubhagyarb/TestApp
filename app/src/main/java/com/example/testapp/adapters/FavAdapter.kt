@@ -1,4 +1,4 @@
-package com.example.testapp
+package com.example.testapp.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +9,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import coil3.load
+import com.example.testapp.R
 import com.example.testapp.data.FavMovie
 import com.example.testapp.data.FavMovieViewModel
 
@@ -56,4 +57,3 @@ class FavAdapter(
 
     override fun getItemCount(): Int = favMovies.size
 }
-

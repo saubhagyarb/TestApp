@@ -1,4 +1,4 @@
-package com.example.testapp
+package com.example.testapp.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.testapp.R
 import com.google.android.material.button.MaterialButton
 
 class MainActivity : AppCompatActivity() {
@@ -22,7 +23,8 @@ class MainActivity : AppCompatActivity() {
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() or
+            val systemBars = insets.getInsets(
+                WindowInsetsCompat.Type.systemBars() or
             WindowInsetsCompat.Type.displayCutout())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets

@@ -1,4 +1,4 @@
-package com.example.testapp
+package com.example.testapp.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,6 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil3.load
+import com.example.testapp.data.Movies
+import com.example.testapp.R
 
 class PosterMovieAdapter(
     private val context: Context,

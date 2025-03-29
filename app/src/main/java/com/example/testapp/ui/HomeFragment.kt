@@ -11,11 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.testapp.DataPass
-import com.example.testapp.MovieAdapter
-import com.example.testapp.Movies
-import com.example.testapp.PosterAdapter
-import com.example.testapp.PosterMovieAdapter
+import com.example.testapp.data.DataPass
+import com.example.testapp.adapters.MovieAdapter
+import com.example.testapp.data.Movies
+import com.example.testapp.adapters.PosterAdapter
+import com.example.testapp.adapters.PosterMovieAdapter
 import com.example.testapp.R
 import com.example.testapp.data.FavMovieViewModel
 import com.google.gson.Gson
