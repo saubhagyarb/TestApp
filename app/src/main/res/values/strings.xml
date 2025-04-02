@@ -27,4 +27,8 @@
 
     <string name="credits_text">Developed using:\n• Kotlin\n• Android Architecture Components\n• Room Database for local storage\n• Coil3 for image loading\n• Material Design components\n• Gson for JSON parsing\n• Coroutines for asynchronous operations\n\nMovie data sourced from public API collections.</string>
     <string name="rating_star">Rating star</string>
+    <string name="trending_arrow_button">Trending arrow</string>
+    <string name="search_button">Search</string>
+    <string name="download_button">Download</string>
+    <string name="latest_arrow_button">Latest arrow</string>
 </resources>

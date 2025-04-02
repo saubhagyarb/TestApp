@@ -41,44 +41,48 @@
                 android:text="@string/trending_now"
                 android:textColor="@color/md_theme_inverseSurface"
                 android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/trendingArrowBtn"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/posterRecyclerView" />
 
             <ImageButton
                 android:id="@+id/trendingArrowBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_marginTop="8dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:foregroundGravity="center"
                 android:src="@drawable/arrow_up"
                 app:layout_constraintStart_toEndOf="@+id/textView3"
                 app:layout_constraintTop_toBottomOf="@+id/posterRecyclerView"
-                app:tint="@color/md_theme_inverseSurface" />
+                app:tint="@color/md_theme_inverseSurface"
+                android:contentDescription="@string/trending_arrow_button"/>
 
             <ImageButton
                 android:id="@+id/searchBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/search"
                 app:layout_constraintEnd_toStartOf="@+id/downloadBtn"
                 app:layout_constraintTop_toBottomOf="@+id/posterRecyclerView"
-                app:tint="@color/md_theme_inverseSurface" />
+                app:tint="@color/md_theme_inverseSurface"
+                android:contentDescription="@string/search_button"/>
 
             <ImageButton
                 android:id="@+id/downloadBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="18dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/download"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/posterRecyclerView"
-                app:tint="@color/md_theme_inverseSurface" />
+                app:tint="@color/md_theme_inverseSurface"
+                android:contentDescription="@string/download_button"/>
 
             <TextView
                 android:id="@+id/seeMore"
@@ -109,7 +113,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
                 android:text="@string/continue_watching"
-                android:textColor="@color/md_theme_background"
+                android:textColor="@color/md_theme_onSecondaryFixed"
                 android:textSize="16sp"
                 app:cornerRadius="10dp"
                 app:icon="@drawable/play"
@@ -148,20 +152,22 @@
                 android:text="@string/latest_movies"
                 android:textColor="@color/md_theme_inverseSurface"
                 android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/continueRecyclerView" />
 
             <ImageButton
                 android:id="@+id/latestArrowBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_marginTop="8dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:foregroundGravity="center"
                 android:src="@drawable/arrow_up"
                 app:layout_constraintStart_toEndOf="@+id/textView4"
                 app:layout_constraintTop_toBottomOf="@+id/continueRecyclerView"
-                app:tint="@color/md_theme_inverseSurface" />
+                app:tint="@color/md_theme_inverseSurface"
+                android:contentDescription="@string/latest_arrow_button"/>
 
             <TextView
                 android:id="@+id/seeMore3"
@@ -187,5 +193,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,8 +22,7 @@
         android:textColor="@color/md_theme_primary_mediumContrast"
         android:textSize="18sp"
         android:visibility="gone"
-        app:drawableTint="@color/md_theme_primary_mediumContrast"
-        app:drawableTopCompat="@drawable/lightbulb"
+        app:drawableTopCompat="@drawable/crocodile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="@+id/favFragmentRecyclerView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
